@@ -10,7 +10,7 @@ class Ingredient extends Component {
 
         let ingredient = null;
 
-        switch (props.ingredient){
+        switch (this.props.ingredient){
     
             case 'breadBottom':
     
