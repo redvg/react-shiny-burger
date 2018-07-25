@@ -6,10 +6,12 @@ const composerItem = (props) =>
         <div className={styles.Label}>
             {props.label}
         </div>
-        <button className={styles.Add}>
+        <button className={styles.Add} 
+                onClick={props.clickHandler(props.label, true)}>
             +
         </button>
-        <button className={styles.Remove}>
+        <button className={styles.Remove}
+                onClick={props.clickHandler(props.label, false)}>
             -
         </button>
     </div>

@@ -20,12 +20,21 @@ class BurgerBuilder extends Component{
         },
     }
 
+    ingredientCountChangedHandler = (ingredient, isIncreased) => {
+
+        const ingredientsRef = {...this.state.ingredients};
+
+        ingredientsRef[ingredient] += isIncreased ? 1 : ingredientsRef[ingredient] > 0 ? -1 : 0;
+
+        this.setState({ingredients: ingredientsRef})
+    } 
+
     render () {
 
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <Composer/>
+                <Composer clickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}/>
             </Aux>
         );
     }

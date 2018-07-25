@@ -5,12 +5,17 @@ import shortid from 'short-id';
 
 const ingredients = [
     'meat',
-    'cheese'
+    'cheese',
+    'bacon',
+    'salad'
 ];
 
-const composer = (_) => 
+const composer = (props) => 
     <div className={styles.Composer}>
-        {ingredients.map(el => <ComposerItem key={shortid.generate()} label={el} />)}
+        {ingredients.map(el => <ComposerItem 
+                                    key={shortid.generate()} 
+                                    label={el} 
+                                    clickHandler={props.clickHandler}/>)}
     </div>
 
 export default composer;
