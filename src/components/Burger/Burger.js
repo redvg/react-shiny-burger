@@ -1,13 +1,14 @@
 import React from 'react';
 import Ingredient from './Ingredient/Ingredient';
+import classes from './Burger.css';
 
 const burger = () =>
-    <div>
+    <div className={classes.Burger}>
         <Ingredient ingredient="breadTop"/>
         <Ingredient ingredient="salad"/>
         <Ingredient ingredient="cheese"/>
         <Ingredient ingredient="meat"/>
         <Ingredient ingredient="breadBottom"/>
-    </div>;
+    </div>
 
 export default burger;
