@@ -3,7 +3,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 
-const ingredientPrices = {
+const INGREDIENT_PRICES = {
 
     salad: 5.5,
 
@@ -49,8 +49,8 @@ class BurgerBuilder extends Component{
 
         ingredientsRef[ingredient] += isIncreased ? 1 : -1;
 
-        const newPrice = Object.keys(ingredientPrices)
-                        .map(el => {return {'count':ingredientsRef[el], 'price':ingredientPrices[el]}; })
+        const newPrice = Object.keys(INGREDIENT_PRICES)
+                        .map(el => {return {'count':ingredientsRef[el], 'price':INGREDIENT_PRICES[el]}; })
                         .reduce((cum, el) => cum + el.count*el.price, 0);
 
         this.setState({ingredients: ingredientsRef, price: newPrice})
