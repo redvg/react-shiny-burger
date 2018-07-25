@@ -17,6 +17,10 @@ const composer = (props) =>
                                     label={el} 
                                     clickHandler={props.clickHandler}/>)}
         <p>your shiny burger is worth {props.price.toFixed(2)}</p>
+        <button className={styles.OrderButton}
+                disabled={props.price === 0}>
+            ORDER
+        </button>
     </div>
 
 export default composer;
