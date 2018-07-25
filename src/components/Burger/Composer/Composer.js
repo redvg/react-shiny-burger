@@ -16,7 +16,7 @@ const composer = (props) =>
                                     key={shortid.generate()} 
                                     label={el} 
                                     clickHandler={props.clickHandler}/>)}
-        <p>your shiny burger is worth {props.price.toString()}</p>
+        <p>your shiny burger is worth {props.price.toFixed(2)}</p>
     </div>
 
 export default composer;
