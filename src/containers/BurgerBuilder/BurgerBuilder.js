@@ -3,6 +3,16 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 
+const ingredientPrices = {
+
+    salad: 5.5,
+
+    cheese: 12.4,
+
+    meat: 22.0,
+
+    bacon: 8.9,
+};
 
 class BurgerBuilder extends Component{
 
@@ -18,23 +28,43 @@ class BurgerBuilder extends Component{
 
             bacon: 0,
         },
-    }
 
-    ingredientCountChangedHandler = (ingredient, isIncreased) => {
+        price: 0.0,
+
+        isUpdated: true
+    }    
+
+    ingredientCountChangedHandler = (ingredient, isIncreased) => {        
+
+        if (!isIncreased && this.state.ingredients[ingredient] === 0){
+
+            this.setState({isUpdated: false});
+
+            return;
+        }
 
         const ingredientsRef = {...this.state.ingredients};
 
-        ingredientsRef[ingredient] += isIncreased ? 1 : ingredientsRef[ingredient] > 0 ? -1 : 0;
+        this.setState({isUpdated: true});
 
-        this.setState({ingredients: ingredientsRef})
-    } 
+        ingredientsRef[ingredient] += isIncreased ? 1 : -1;
+
+        const newPrice = Object.keys(ingredientPrices)
+                        .map(el => {return {'count':ingredientsRef[el], 'price':ingredientPrices[el]}; })
+                        .reduce((cum, el) => cum + el.count*el.price, 0);
+
+        this.setState({ingredients: ingredientsRef, price: newPrice})
+    }
+
+    ///shouldComponentUpdate = () => this.state.isUpdated;
 
     render () {
 
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <Composer clickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}/>
+                <Composer clickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
+                          price={this.state.price}/>
             </Aux>
         );
     }

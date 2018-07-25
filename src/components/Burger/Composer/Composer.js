@@ -16,6 +16,7 @@ const composer = (props) =>
                                     key={shortid.generate()} 
                                     label={el} 
                                     clickHandler={props.clickHandler}/>)}
+        <p>your shiny burger is worth {props.price.toString()}</p>
     </div>
 
 export default composer;
