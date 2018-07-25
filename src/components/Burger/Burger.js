@@ -15,12 +15,16 @@ const burger = (props) => {
         }, []);
         
     if (parsedIngredients.length === 0) {
+
         parsedIngredients = <p>Please start adding ingredients!</p>;
     }
 
-    return <div className={classes.Burger}> {parsedIngredients} </div>
+    return <div className={classes.Burger}>
+                <Ingredient ingredient="breadTop" />
+                {parsedIngredients}
+                <Ingredient ingredient="breadBottom" />
+           </div>
 
-}
-    
+}    
 
 export default burger;
