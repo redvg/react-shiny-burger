@@ -15,11 +15,12 @@ const composer = (props) =>
         {ingredients.map(el => <ComposerItem 
                                     key={shortid.generate()} 
                                     label={el} 
-                                    clickHandler={props.clickHandler}/>)}
+                                    clickHandler={props.ingredientClickHandler}/>)}
         <p>your shiny burger is worth {props.price.toFixed(2)}</p>
         <button className={styles.OrderButton}
-                disabled={props.price === 0}>
-            ORDER
+                disabled={props.price === 0}
+                onClick={props.purchaseClickHandler()}>
+            PURCHASE NOW!
         </button>
     </div>
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
+import Modal from '../../components/Modal/Modal';
 
 const INGREDIENT_PRICES = {
 
@@ -31,6 +32,8 @@ class BurgerBuilder extends Component{
 
         price: 0.0,
 
+        wasPurchased: false
+
         //isUpdated: true
     }    
 
@@ -56,6 +59,11 @@ class BurgerBuilder extends Component{
         this.setState({ingredients: ingredientsRef, price: newPrice})
     }
 
+    purchaseHandler = () => {
+
+        this.setState({wasPurchased: true});
+    }
+
     ///shouldComponentUpdate = () => this.state.isUpdated;
 
     render () {
@@ -63,8 +71,10 @@ class BurgerBuilder extends Component{
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <Composer clickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
+                <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
+                          purchaseClickHandler={() => this.purchaseHandler}
                           price={this.state.price}/>
+                {this.state.wasPurchased ? <Modal>order summary goes here</Modal>: null}
             </Aux>
         );
     }
