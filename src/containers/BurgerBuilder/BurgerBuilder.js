@@ -70,6 +70,11 @@ class BurgerBuilder extends Component{
         this.setState({wasPurchased: false});
     }
 
+    confirmHandler = () => {
+
+        alert('+');
+    }
+
     ///shouldComponentUpdate = () => this.state.isUpdated;
 
     render () {
@@ -82,7 +87,9 @@ class BurgerBuilder extends Component{
                           price={this.state.price}/>
                 <Modal isShow={this.state.wasPurchased}
                        cancelClickHandler={this.cancelHandler}>
-                    <Order ingredients={this.state.ingredients}/>
+                    <Order ingredients={this.state.ingredients}
+                           cancelClickHandler={this.cancelHandler}
+                           confirmClickHandler={this.confirmHandler} />
                 </Modal>
             </Aux>
         );
