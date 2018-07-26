@@ -3,6 +3,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 import Modal from '../../components/Modal/Modal';
+import Order from '../../components/Burger/Order/Order';
 
 const INGREDIENT_PRICES = {
 
@@ -74,7 +75,7 @@ class BurgerBuilder extends Component{
                 <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
                           purchaseClickHandler={() => this.purchaseHandler}
                           price={this.state.price}/>
-                {this.state.wasPurchased ? <Modal>order summary goes here</Modal>: null}
+                {this.state.wasPurchased ? <Modal><Order ingredients={this.state.ingredients}/></Modal>: null}
             </Aux>
         );
     }
