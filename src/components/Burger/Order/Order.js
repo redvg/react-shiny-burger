@@ -11,7 +11,7 @@ const order = (props) =>{
                         
     return(
         <Aux>
-            <h3>your order</h3>
+            <h3>your order ${props.price}</h3>
             <ul>
                 {parsedOrder.map(el=><li key={shortid.generate()}>{el['name']} {el['count']}</li>)}
             </ul>
