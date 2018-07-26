@@ -65,6 +65,11 @@ class BurgerBuilder extends Component{
         this.setState({wasPurchased: true});
     }
 
+    cancelHandler = () => {
+
+        this.setState({wasPurchased: false});
+    }
+
     ///shouldComponentUpdate = () => this.state.isUpdated;
 
     render () {
@@ -75,7 +80,10 @@ class BurgerBuilder extends Component{
                 <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
                           purchaseClickHandler={() => this.purchaseHandler}
                           price={this.state.price}/>
-                <Modal isShow={this.state.wasPurchased}><Order ingredients={this.state.ingredients}/></Modal>
+                <Modal isShow={this.state.wasPurchased}
+                       cancelClickHandler={this.cancelHandler}>
+                    <Order ingredients={this.state.ingredients}/>
+                </Modal>
             </Aux>
         );
     }
