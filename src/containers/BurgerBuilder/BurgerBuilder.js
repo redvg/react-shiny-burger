@@ -75,7 +75,7 @@ class BurgerBuilder extends Component{
                 <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
                           purchaseClickHandler={() => this.purchaseHandler}
                           price={this.state.price}/>
-                {this.state.wasPurchased ? <Modal><Order ingredients={this.state.ingredients}/></Modal>: null}
+                <Modal isShow={this.state.wasPurchased}><Order ingredients={this.state.ingredients}/></Modal>
             </Aux>
         );
     }
