@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
-import Modal from '../../components/Modal/Modal';
+import Modal from '../../components/UI/Modal/Modal';
 import Order from '../../components/Burger/Order/Order';
 
 const INGREDIENT_PRICES = {
