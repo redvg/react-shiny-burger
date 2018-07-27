@@ -5,8 +5,10 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 
 const toolbar = (props) =>
     <header className={styles.Toolbar}>
-        <div>menu</div>
-        <Logo />
+        <div>menu</div>        
+        <div className={styles.Logo}>
+            <Logo />
+        </div>        
         <nav>
             <NavigationBar/>
         </nav>

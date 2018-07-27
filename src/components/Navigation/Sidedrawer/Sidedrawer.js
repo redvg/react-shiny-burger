@@ -9,7 +9,9 @@ const sidedrawer = () => {
     return(
 
         <div className={styles.Sidedrawer}>
-            <Logo />
+            <div className={styles.Logo}>
+                <Logo />
+            </div>            
             <nav>
                 <NavigationBar/>
             </nav>
