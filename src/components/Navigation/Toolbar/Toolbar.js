@@ -6,9 +6,12 @@ import Button from '../../UI/Button/Button';
 
 const toolbar = (props) =>
     <header className={styles.Toolbar}>
-        <Button clickHandler={props.sidedrawerOpenedHandler}>
-            menu
-        </Button>        
+        <div className={styles.MobileOnly}>
+            <Button clickHandler={props.sidedrawerOpenedHandler}>                    
+                menu
+            </Button>
+        </div>
+      
         <div className={styles.Logo}>
             <Logo />
         </div>        
