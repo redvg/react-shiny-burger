@@ -2,16 +2,13 @@ import React from 'react';
 import styles from './Toolbar.css';
 import Logo from '../Logo/Logo';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import Button from '../../UI/Button/Button';
+import HamburgerToggle from '../../Navigation/HamburgerToggle/HamburgerToggle';
 
 const toolbar = (props) =>
     <header className={styles.Toolbar}>
         <div className={styles.MobileOnly}>
-            <Button clickHandler={props.sidedrawerOpenedHandler}>                    
-                menu
-            </Button>
-        </div>
-      
+            <HamburgerToggle clickHandler={props.sidedrawerOpenedHandler} />
+        </div>      
         <div className={styles.Logo}>
             <Logo />
         </div>        
