@@ -34,15 +34,11 @@ class BurgerBuilder extends Component{
         price: 0.0,
 
         wasPurchased: false
-
-        //isUpdated: true
     }    
 
     ingredientCountChangedHandler = (ingredient, isIncreased) => {        
 
         if (!isIncreased && this.state.ingredients[ingredient] === 0){
-
-            //this.setState({isUpdated: false});
 
             return;
         }
@@ -74,8 +70,6 @@ class BurgerBuilder extends Component{
 
         alert('+');
     }
-
-    ///shouldComponentUpdate = () => this.state.isUpdated;
 
     render () {
 
