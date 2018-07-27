@@ -16,11 +16,16 @@ class Layout extends Component{
         this.setState({isShowSidedrawer: false});
     }
 
+    sidedrawerOpenedHandler = () => {
+
+        this.setState({isShowSidedrawer: true});
+    }
+
     render() {
 
         return(
             <Aux>
-                <Toolbar/>
+                <Toolbar sidedrawerOpenedHandler={this.sidedrawerOpenedHandler}/>
                 <Sidedrawer isShow={this.state.isShowSidedrawer} 
                             clickHandler={() => this.sidedrawerClosedHandler}/>
                 <main className={classes.Content}>
