@@ -4,6 +4,7 @@ import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 import Modal from '../../components/UI/Modal/Modal';
 import Order from '../../components/Burger/Order/Order';
+import axios from '../../axiosForOrders';
 
 const INGREDIENT_PRICES = {
 
@@ -68,7 +69,15 @@ class BurgerBuilder extends Component{
 
     confirmHandler = () => {
 
-        alert('+');
+        axios.post('/orders.json', this.state.ingredients)
+        .then(response=>{
+
+            console.log(response);
+        })
+        .catch(error => {
+            
+            console.log(error)
+        });
     }
 
     render () {
