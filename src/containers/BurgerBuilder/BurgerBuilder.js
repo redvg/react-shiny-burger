@@ -3,6 +3,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 import Modal from '../../components/UI/Modal/Modal';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Order from '../../components/Burger/Order/Order';
 import axios from '../../axiosForOrders';
 
@@ -34,7 +35,9 @@ class BurgerBuilder extends Component{
 
         price: 0.0,
 
-        wasPurchased: false
+        wasPurchased: false,
+
+        isLoading: false
     }    
 
     ingredientCountChangedHandler = (ingredient, isIncreased) => {        
@@ -69,18 +72,39 @@ class BurgerBuilder extends Component{
 
     confirmHandler = () => {
 
+        this.setState({isLoading: true});
+
         axios.post('/orders.json', this.state.ingredients)
         .then(response=>{
+
+            this.setState({isLoading: false});
 
             console.log(response);
         })
         .catch(error => {
-            
+
+            this.setState({isLoading: false});
+
             console.log(error)
         });
     }
 
     render () {
+
+        let order = null;
+
+        if (this.state.isLoading){
+
+            order = <Spinner />;       
+        }
+
+        else {
+
+            order = <Order ingredients={this.state.ingredients}
+                           price={this.state.price} 
+                           cancelClickHandler={this.cancelHandler}
+                           confirmClickHandler={this.confirmHandler} />;
+        }
 
         return (
             <Aux>
@@ -90,10 +114,7 @@ class BurgerBuilder extends Component{
                           price={this.state.price}/>
                 <Modal isShow={this.state.wasPurchased}
                        cancelClickHandler={this.cancelHandler}>
-                    <Order ingredients={this.state.ingredients}
-                           price={this.state.price} 
-                           cancelClickHandler={this.cancelHandler}
-                           confirmClickHandler={this.confirmHandler} />
+                       {order}                    
                 </Modal>
             </Aux>
         );
