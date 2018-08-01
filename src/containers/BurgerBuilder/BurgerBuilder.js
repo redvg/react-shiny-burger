@@ -8,20 +8,12 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Order from '../../components/Burger/Order/Order';
 import axios from '../../axiosForOrders';
 
-const INGREDIENT_PRICES = {
-
-    salad: 5.5,
-
-    cheese: 12.4,
-
-    meat: 22.0,
-
-    bacon: 8.9,
-};
 
 class BurgerBuilder extends Component{
 
     state = {
+
+        ingredientPrices: null,
         
         ingredients: {
 
@@ -39,7 +31,21 @@ class BurgerBuilder extends Component{
         wasPurchased: false,
 
         isLoading: false
-    }    
+    }
+
+    componentDidMount () {
+
+        if (!this.state.ingredientPrices){
+
+            axios.get('/ingredients.json').then(response => {
+
+                this.setState({ingredientPrices: response.data.slice(1)});
+
+            }).catch(error =>{
+    
+            })
+        }        
+    }
 
     ingredientCountChangedHandler = (ingredient, isIncreased) => {        
 
@@ -54,8 +60,8 @@ class BurgerBuilder extends Component{
 
         ingredientsRef[ingredient] += isIncreased ? 1 : -1;
 
-        const newPrice = Object.keys(INGREDIENT_PRICES)
-                        .map(el => {return {'count':ingredientsRef[el], 'price':INGREDIENT_PRICES[el]}; })
+        const newPrice = this.state.ingredientPrices
+                        .map(el => {return {'count':ingredientsRef[el.name], 'price':el.price}; })
                         .reduce((cum, el) => cum + el.count*el.price, 0);
 
         this.setState({ingredients: ingredientsRef, price: newPrice})
@@ -107,12 +113,18 @@ class BurgerBuilder extends Component{
                            confirmClickHandler={this.confirmHandler} />;
         }
 
+        let composer = this.state.ingredientPrices ? 
+        <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
+                  purchaseClickHandler={this.purchaseHandler}
+                  price={this.state.price} 
+                  ingredients={this.state.ingredientPrices}/> 
+        :
+        <Spinner />;
+
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
-                          purchaseClickHandler={() => this.purchaseHandler}
-                          price={this.state.price} ingredients={Object.keys(INGREDIENT_PRICES).map(el => {return {'name': [el], 'price': INGREDIENT_PRICES[el]}})}/>
+                {composer}                
                 <Modal isShow={this.state.wasPurchased}
                        cancelClickHandler={this.cancelHandler}>
                        {order}                    
