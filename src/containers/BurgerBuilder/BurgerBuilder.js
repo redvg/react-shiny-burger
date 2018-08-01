@@ -112,7 +112,7 @@ class BurgerBuilder extends Component{
                 <Burger ingredients={this.state.ingredients}/>
                 <Composer ingredientClickHandler={(a, b) => this.ingredientCountChangedHandler.bind(this, a, b)}
                           purchaseClickHandler={() => this.purchaseHandler}
-                          price={this.state.price}/>
+                          price={this.state.price} ingredients={Object.keys(INGREDIENT_PRICES).map(el => {return {'name': [el], 'price': INGREDIENT_PRICES[el]}})}/>
                 <Modal isShow={this.state.wasPurchased}
                        cancelClickHandler={this.cancelHandler}>
                        {order}                    
