@@ -42,7 +42,7 @@ class BurgerBuilder extends Component{
                 this.setState({ingredientPrices: response.data.slice(1)});
 
             }).catch(error =>{
-    
+                //TODO: update UI here (hide spinner, retry button or smth)
             })
         }        
     }
