@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
-import withErrorModal from '../../hoc/withErrorModal/withErrorModal';
+import withAxiosErrorHandler from '../../hoc/withAxiosErrorHandler/withAxiosErrorHandler';
 import Burger from '../../components/Burger/Burger';
 import Composer from '../../components/Burger/Composer/Composer';
 import Modal from '../../components/UI/Modal/Modal';
@@ -75,7 +75,7 @@ class BurgerBuilder extends Component{
 
         this.setState({isLoading: true});
 
-        axios.post('/orders.json', this.state.ingredients)
+        axios.post('/orders.jsonz', this.state.ingredients)
         .then(response=>{
 
             this.setState({isLoading: false});
@@ -122,4 +122,4 @@ class BurgerBuilder extends Component{
     }
 }
 
-export default withErrorModal(BurgerBuilder);
+export default withAxiosErrorHandler(BurgerBuilder, axios);
