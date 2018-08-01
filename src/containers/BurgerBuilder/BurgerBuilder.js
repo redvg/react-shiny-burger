@@ -75,7 +75,7 @@ class BurgerBuilder extends Component{
 
         this.setState({isLoading: true});
 
-        axios.post('/orders.jsonz', this.state.ingredients)
+        axios.post('/orders.json', this.state.ingredients)
         .then(response=>{
 
             this.setState({isLoading: false});
