@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 //import styles from './Checkout.css';
 import Summary from '../../components/Checkout/Summary/Summary';
+import axios from '../../axiosForOrders';
+import withAxiosErrorHandler from '../../hoc/withAxiosErrorHandler/withAxiosErrorHandler';
 
 
 class Checkout extends Component{
@@ -12,7 +14,16 @@ class Checkout extends Component{
 
     purchaseHandler = () =>{
 
-        console.log('purchased')
+        const ingredients = this.props.history.location.state;      
+
+        axios.post('/orders.json', ingredients).then(response => {
+
+            if (response && response.status === 200) this.props.history.push('/orders');
+
+        }).catch(error => {
+
+            console.log(error);
+        })
     }
 
     render() {
@@ -25,4 +36,4 @@ class Checkout extends Component{
     }
 }
 
-export default Checkout;
+export default withAxiosErrorHandler(Checkout, axios);

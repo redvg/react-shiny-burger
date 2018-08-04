@@ -7,6 +7,8 @@ import {Route, Switch} from 'react-router-dom';
 
 const Checkout = lazyComponent(() => import('./containers/Checkout/Checkout'));
 
+const Orders = lazyComponent(() => import('./containers/Orders/Orders'));
+
 class App extends Component {
 
   render() {
@@ -16,6 +18,7 @@ class App extends Component {
       <Switch>
         <Layout>
           <Route path='/checkout' exact component={Checkout} />
+          <Route path='/orders' exact component={Orders} />
           <Route path='/' exact component={BurgerBuilder} />          
         </Layout>
       </Switch>
