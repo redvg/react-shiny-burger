@@ -17,8 +17,11 @@ class Checkout extends Component{
 
     render() {
 
+        const ingredients = this.props.history.location.state;
+
         return(<Summary cancelHandler={this.cancelHandler}
-                        purchaseHandler={this.purchaseHandler}/>);
+                        purchaseHandler={this.purchaseHandler}
+                        ingredients={ingredients}/>);
     }
 }
 

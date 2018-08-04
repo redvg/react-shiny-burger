@@ -60,7 +60,10 @@ class BurgerBuilder extends Component{
 
     checkoutHandler = () => {
 
-        this.props.history.push('/checkout');
+        this.props.history.push({
+            pathname: '/checkout',
+            state: this.state.ingredients
+        });
     }
 
     render () {
