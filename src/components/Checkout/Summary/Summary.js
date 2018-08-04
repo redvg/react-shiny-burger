@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Summary.css';
 import Button from '../../UI/Button/Button';
 import Burger from '../../Burger/Burger';
-import {withRouter} from 'react-router-dom';
 
 
 const summary = (props) =>
@@ -22,4 +21,4 @@ const summary = (props) =>
         </Button>
     </div>
 
-export default withRouter(summary);
+export default summary;
