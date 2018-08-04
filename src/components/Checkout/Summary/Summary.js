@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Summary.css';
-import Burger from '../../Burger/Burger';
 import Button from '../../UI/Button/Button';
+import Burger from '../../Burger/Burger';
+import {withRouter} from 'react-router-dom';
 
 
 const summary = (props) =>
@@ -11,8 +12,14 @@ const summary = (props) =>
             <Burger className={styles.Burger} 
                     ingredients={props.ingredients? props.ingredients : {}} />
         </div>
-        <Button buttonType='Danger'>cancel </Button>
-        <Button buttonType='Success'>buy</Button>
+        <Button buttonType='Danger' 
+                clickHandler={props.cancelHandler}>
+            cancel 
+        </Button>
+        <Button buttonType='Success'
+                clickHandler={props.purchaseHandler}>
+            buy
+        </Button>
     </div>
 
-export default summary;
+export default withRouter(summary);

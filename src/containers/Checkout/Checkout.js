@@ -5,13 +5,20 @@ import Summary from '../../components/Checkout/Summary/Summary';
 
 class Checkout extends Component{
 
-    render(){
+    cancelHandler = () => {
 
-        return(
-            <div>
-                <Summary ingredients={this.props.ingredients}/>
-            </div>
-        );
+        this.props.history.goBack();
+    }
+
+    purchaseHandler = () =>{
+
+        console.log('purchased')
+    }
+
+    render() {
+
+        return(<Summary cancelHandler={this.cancelHandler}
+                        purchaseHandler={this.purchaseHandler}/>);
     }
 }
 
