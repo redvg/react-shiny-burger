@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './NavigationItem.css';
+import {NavLink} from 'react-router-dom';
 
 const navigationItem = (props) =>
     <li className={styles.NavigationItem}>
-        <a href={props.link} className={props.isActive? styles.active : null}>
-            {props.children}
-        </a>
+        <NavLink to={props.path}>{props.title}</NavLink>
     </li>
 
 
