@@ -13,8 +13,8 @@ const composer = (props) =>
         <p>your shiny burger is worth {props.price.toFixed(2)}</p>
         <button className={styles.OrderButton}
                 disabled={props.price === 0}
-                onClick={props.purchaseClickHandler}>
-            PURCHASE NOW!
+                onClick={props.checkoutHandler}>
+            checkout
         </button>
     </div>
 

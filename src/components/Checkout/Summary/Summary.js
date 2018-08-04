@@ -9,9 +9,9 @@ const summary = (props) =>
         <h1>summary</h1>
         <div>
             <Burger className={styles.Burger} 
-                    ingredients={props.ingredients} />
+                    ingredients={props.ingredients? props.ingredients : {}} />
         </div>
-        <Button buttonType='Danger'>cancel</Button>
+        <Button buttonType='Danger'>cancel </Button>
         <Button buttonType='Success'>buy</Button>
     </div>
 

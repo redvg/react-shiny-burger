@@ -5,19 +5,11 @@ import Summary from '../../components/Checkout/Summary/Summary';
 
 class Checkout extends Component{
 
-    //TODO: this will be passed in
-    state = {
-        ingredients: {
-            cheese: 1,
-            salad: 1
-        }
-    }
-
     render(){
 
         return(
             <div>
-                <Summary ingredients={this.state.ingredients}/>
+                <Summary ingredients={this.props.ingredients}/>
             </div>
         );
     }
