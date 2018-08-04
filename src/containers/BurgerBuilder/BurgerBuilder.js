@@ -14,17 +14,8 @@ class BurgerBuilder extends Component{
     state = {
 
         ingredientPrices: null,
-        
-        ingredients: {
 
-            salad: 0,
-
-            cheese: 0,
-
-            meat: 0,
-
-            bacon: 0,
-        },
+        ingredients: {},
 
         price: 0.0,
 
@@ -39,7 +30,12 @@ class BurgerBuilder extends Component{
 
             axios.get('/ingredients.json').then(response => {
 
-                this.setState({ingredientPrices: response.data.slice(1)});
+                const ingredientPrices = response.data.slice(1);
+
+                const ingredients = ingredientPrices.map(el=>{return {[el.name]: 0}})
+                                                    .reduce((acc, el)=>({...acc, [Object.keys(el)[0]]: el[Object.keys(el)[0]]}));
+
+                this.setState({ingredientPrices: ingredientPrices, ingredients: ingredients});
 
             }).catch(error =>{
                 //TODO: update UI here (hide spinner, retry button or smth)
