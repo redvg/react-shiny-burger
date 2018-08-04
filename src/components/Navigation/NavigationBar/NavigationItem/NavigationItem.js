@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 const navigationItem = (props) =>
     <li className={styles.NavigationItem}>
-        <NavLink to={props.path}>{props.title}</NavLink>
+        <NavLink to={props.path} activeStyle={{color: 'green'}} exact>{props.title}</NavLink>
     </li>
 
 
