@@ -4,8 +4,8 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationBar = () =>
     <ul className={styles.NavigationBar}>
-        <NavigationItem link ='/' isActive>here</NavigationItem>
-        <NavigationItem link='/'>there</NavigationItem>
+        <NavigationItem link ='/' isActive>builder</NavigationItem>
+        <NavigationItem link='/'>checkout</NavigationItem>
     </ul>
 
 
